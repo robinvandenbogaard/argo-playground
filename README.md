@@ -21,8 +21,9 @@ Steps taken on a fresh docker for windows k8s cluster:
 1. Created public git repo https://github.com/robinvandenbogaard/argo-playground following the [app of apps](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook) pattern using [apps](https://github.com/argoproj/argocd-example-apps/tree/master/apps) as an example
 1. The first commit on this repo will show you what was added. From there on out its all stuff to expirement with different settings and mechanisms
 1. The sync-application is a default chart created with `helm create sync-application`. Which I then hooked up with the sync-application.yaml in the applications/templates directory.
-1. Added the repo to argocd manually using the UI on http://localhost:8080
+1. Added the repo to argocd using the cli `argocd app create playground --repo https://github.com/robinvandenbogaard/argo-playground --path applications --dest-server https://kubernetes.default.svc --dest-namespace default --sync-policy automated --self-heal --auto-prune`
 
 # Troubles
-## During setup
 - Port forwarding got messed up a couple of times, needed to re run that command. Some commands failed because connection could not be made. Pay close attention to command and make sure they are ran succesfully!
+- When adding this repo as argocd app, it didn't sync automatically. I had to add `--sync-policy automated --self-heal --auto-prune` for that. Auto prune so argocd gets cleaned up nicely aswell.
+- The sync-application had to be synced manually (the first time). It failed because the declared namespace did not exist. So I added the application/templates/namespaces.yaml file declaring it.
