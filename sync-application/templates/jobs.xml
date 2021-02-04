@@ -32,3 +32,19 @@ spec:
         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
   backoffLimit: 4
 ---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wave-1.onfailure.nohook-{{ .Values.revision }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
+  backoffLimit: 4
+---
