@@ -4,6 +4,8 @@
 
 replicaCount: 2
 
+bpi: 2000
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
