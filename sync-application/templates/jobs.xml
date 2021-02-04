@@ -13,3 +13,35 @@ spec:
         image: perl
         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
   backoffLimit: 4
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wave2.onfailure.nohook-{{ .Values.revision }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
+  backoffLimit: 4
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wave6.onfailure.nohook-{{ .Values.revision }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
+  backoffLimit: 4
