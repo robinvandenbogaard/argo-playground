@@ -4,6 +4,7 @@
 
 replicaCount: 4
 
+revision: 1
 bpi: 2000
 
 image:
