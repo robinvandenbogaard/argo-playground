@@ -4,8 +4,8 @@
 
 replicaCount: 4
 
-revision: 3
-bpi: 2000
+revision: 4
+bpi: 4000
 
 image:
   repository: nginx
