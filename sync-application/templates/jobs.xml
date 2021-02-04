@@ -2,10 +2,9 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: wave-1.never.nohook
-  labels:
-    somtoday.nl/revision: {{ .Values.revision }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+    somtoday.nl/revision: "{{ .Values.revision }}"
 spec:
   template:
     spec:
@@ -20,10 +19,9 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: wave-1.onfailure.nohook
-  labels:
-    somtoday.nl/revision: {{ .Values.revision }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+    somtoday.nl/revision: "{{ .Values.revision }}"
 spec:
   template:
     spec:
