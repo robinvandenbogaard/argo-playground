@@ -51,12 +51,13 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: wave-1.always.nohook
+  name: wave-1.onfailure.nohook
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   template:
     spec:
+      restartPolicy: OnFailure
       containers:
       - name: pi
         image: perl
@@ -66,13 +67,14 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: wave-1.always.presync
+  name: wave-1.onfailure.presync
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   template:
     spec:
+      restartPolicy: OnFailure
       containers:
       - name: pi
         image: perl
@@ -82,13 +84,14 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: wave-1.always.sync
+  name: wave-1.onfailure.sync
   annotations:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   template:
     spec:
+      restartPolicy: OnFailure
       containers:
       - name: pi
         image: perl
