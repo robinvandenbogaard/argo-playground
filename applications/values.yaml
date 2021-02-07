@@ -4,3 +4,6 @@ spec:
   source:
     repoURL: https://github.com/robinvandenbogaard/argo-playground
     targetRevision: HEAD
+
+applications:
+  - sync-application
