@@ -1,3 +1,4 @@
+{{- $root := . -}}
 {{- range $app := .Values.applications }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -9,12 +10,12 @@ metadata:
 spec:
   destination:
     namespace: {{ $app }}
-    server: {{ .Values.spec.destination.server }}
+    server: {{ $root.Values.spec.destination.server }}
   project: default
   source:
-    repoURL: {{ .Values.spec.source.repoURL }}
+    repoURL: {{ $root.Values.spec.source.repoURL }}
     path: {{ $app }}
-    targetRevision: {{ .Values.spec.source.targetRevision }}
+    targetRevision: {{ $root.Values.spec.source.targetRevision }}
 
   syncPolicy:
     automated:
