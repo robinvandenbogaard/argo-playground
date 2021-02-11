@@ -7,5 +7,4 @@ spec:
 
 applications:
   - sync-application
-  - message-broker
   - myapp
