@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sync-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Release.NameSpace }}
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    repoURL: {{ .Values.spec.source.repoURL }}
+    path: sync-application
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    valueFiles:
+      - values-prod.yaml
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
