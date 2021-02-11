@@ -14,6 +14,7 @@ spec:
     repoURL: {{ .Values.spec.source.repoURL }}
     path: sync-application
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
       valueFiles:
         - values-test.yaml
 
