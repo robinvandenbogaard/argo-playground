@@ -45,19 +45,3 @@ spec:
         image: perl
         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
   backoffLimit: 4
-{{ if eq .Values.replicas 4 }}
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: only-if-replicas-is-4-{{ .Values.revision }}
-spec:
-  template:
-    spec:
-      restartPolicy: OnFailure
-      containers:
-      - name: pi
-        image: perl
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi({{ .Values.bpi }})"]
-  backoffLimit: 4
-{{ end }}
