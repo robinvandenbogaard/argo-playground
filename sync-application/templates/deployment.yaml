@@ -47,7 +47,7 @@ spec:
               port: http
           startupProbe:
             httpGet:
-              path: /healthz00s
+              path: /
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
